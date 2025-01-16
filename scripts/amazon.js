@@ -100,6 +100,18 @@ products.forEach((product) => {
             quantity: 1,
         });
         }
-        console.log(cart);
+        
+        //cho giá trị của cart hiện tại bằng 0
+        let cartQuantity = 0;
+
+        cart.forEach((item) => {
+            //tính số lượng product thêm vao cart
+            cartQuantity += item.quantity;
+        })
+        
+        document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity;
+
+        
     });
  });
