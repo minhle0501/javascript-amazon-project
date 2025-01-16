@@ -58,12 +58,48 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart"
+          data-product-id = "${product.id}">
             Add to Cart
           </button>
         </div>
     `;
-    //kết hơp các html này và put nó lên web
-    document.querySelector('.js-products-grid')
-    .innerHTML = productsHTML;
 })
+
+ //kết hơp các html này và put nó lên web
+ document.querySelector('.js-products-grid')
+ .innerHTML = productsHTML;
+// làm việc với Add to Cart lưu dưới file cart sau đó
+//đặt tên data attribute
+//  data-product-name = "${product.name}
+ document.querySelectorAll('.js-add-to-cart')
+ .forEach((button) => {
+    button.addEventListener('click',() => {
+        //dùng data set để chuyển dữ liệu (chuyển thừ kebab to camel)
+        const productId = button.dataset.productId;
+       /*  trong 1 sản phẩm thương mại thì có nhiều sản phẩm có cùng tên với nhau nhưng khác hãng 
+        để giải quyết vấn đề này ta dùng id
+        const productName = button.dataset.productName; */
+        //loop dữ liệu qua cart để không bị trùng sản phẩm mà chỉ thêm quantity
+        //lưu biến item dưới dạng biến để t dùng nó sau này và cho nó underfield
+        let matchingItem;
+        //dùng for each
+        cart.forEach((item) => {
+            //nếu như cart trùng 
+            if(productId === item.productId){
+                matchingItem = item;
+            }
+        });
+
+        if(matchingItem){
+            matchingItem.quantity++;
+        }else{
+        //push dữ liệu vào cart
+        cart.push({
+            productId: productId,
+            quantity: 1,
+        });
+        }
+        console.log(cart);
+    });
+ });
