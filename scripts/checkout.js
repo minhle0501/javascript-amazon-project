@@ -110,9 +110,11 @@ document.querySelectorAll('.js-delete-link')
     removeFromCart(productId);
     const container = document.querySelector(`.js-cart-item-container-${productId}`
     ).remove();
+    UpdateCartQuantity();
   });
 })
-let cartQuantity = 0;
+function UpdateCartQuantity(){
+  let cartQuantity = 0;
 
 cart.forEach((CartItem) => {
   //tính số lượng product thêm vao cart
@@ -120,3 +122,5 @@ cart.forEach((CartItem) => {
 });
 document.querySelector('.js-return-to-home-link')
 .innerHTML = `${cartQuantity} items`;
+}
+UpdateCartQuantity();
