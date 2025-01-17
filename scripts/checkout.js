@@ -1,4 +1,4 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart,calculateCartQuantity } from "../data/cart.js";
 
 import { products } from "../data/products.js";
 
@@ -114,12 +114,8 @@ document.querySelectorAll('.js-delete-link')
   });
 })
 function UpdateCartQuantity(){
-  let cartQuantity = 0;
-
-cart.forEach((CartItem) => {
-  //tính số lượng product thêm vao cart
-  cartQuantity += CartItem.quantity;
-});
+  const cartQuantity = calculateCartQuantity();
+  
 document.querySelector('.js-return-to-home-link')
 .innerHTML = `${cartQuantity} items`;
 }

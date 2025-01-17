@@ -61,3 +61,14 @@ export function removeFromCart(productId) {
   saveToStorage();
 
 }
+
+//14e them vao hàm
+export function calculateCartQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  return cartQuantity;
+}

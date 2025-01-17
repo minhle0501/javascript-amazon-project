@@ -1,5 +1,5 @@
 
-import {cart, addToCart} from '../data/cart.js';
+import {cart, addToCart, calculateCartQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -89,13 +89,7 @@ const addedMessageTimeouts = {};
 
 
 function UpdateCartQuantity(){
-   //cho giá trị của cart hiện tại bằng 0
-   let cartQuantity = 0;
-
-   cart.forEach((CartItem) => {
-     //tính số lượng product thêm vao cart
-     cartQuantity += CartItem.quantity;
-   })
+  const cartQuantity = calculateCartQuantity();
 
    document.querySelector('.js-cart-quantity')
      .innerHTML = cartQuantity;
