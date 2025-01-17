@@ -4,6 +4,8 @@
 //object cho phép ta nhóm lại nhiều giá khác nhau 
 import {cart} from '../data/cart.js';
 
+import { products } from '../data/products.js';
+
 //1.tạo ra biên global
 let productsHTML = '';
 //dùng forEach để loop qua từng object trên(lưu object dưới parem product chay function)
