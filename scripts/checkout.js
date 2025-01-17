@@ -112,3 +112,11 @@ document.querySelectorAll('.js-delete-link')
     ).remove();
   });
 })
+let cartQuantity = 0;
+
+cart.forEach((CartItem) => {
+  //tính số lượng product thêm vao cart
+  cartQuantity += CartItem.quantity;
+});
+document.querySelector('.js-return-to-home-link')
+.innerHTML = `${cartQuantity} items`;
