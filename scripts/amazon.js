@@ -2,7 +2,7 @@
 //tạo mảng vì mảng đại diện cho danh sách
 //dùng object đẻ đại diện cho mỗi sản phẩm
 //object cho phép ta nhóm lại nhiều giá khác nhau 
-
+import {cart} from '../data/cart.js';
 
 //1.tạo ra biên global
 let productsHTML = '';
