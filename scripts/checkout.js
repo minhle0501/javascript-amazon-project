@@ -1,4 +1,7 @@
-import { cart, removeFromCart,calculateCartQuantity } from "../data/cart.js";
+import { cart, 
+  removeFromCart, 
+  calculateCartQuantity, 
+  updateQuantity } from "../data/cart.js";
 
 import { products } from "../data/products.js";
 
@@ -39,24 +42,27 @@ cart.forEach((cartItem) => {
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
                   </span> 
-                  <span class="update-quantity-link link-primary 
-                  js-update-link" data-product-id="${matchingProduct.id}">
+                 
+                   <span class="update-quantity-link link-primary 
+                   js-update-link" data-product-id="${matchingProduct.id}">
                     Update
                   </span>
-
+                
+                <input class="quantity-input js-quantity-input-${matchingProduct.id}">  
 
                   <span class="save-quantity-link link-primary js-save-link"
                   data-product-id="${matchingProduct.id}">
-                    Save
-                  </span>
+                  Save
+                 </span>
 
 
                   <span class="delete-quantity-link link-primary 
                   js-delete-link" data-product-id="${matchingProduct.id}">
                     Delete
                   </span>
+
                 </div>
               </div>
 
@@ -64,17 +70,21 @@ cart.forEach((cartItem) => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
+
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
                     name="delivery-option-${matchingProduct.id}">
                   <div>
+
                     <div class="delivery-option-date">
                       Tuesday, June 21
                     </div>
+
                     <div class="delivery-option-price">
                       FREE Shipping
                     </div>
+
                   </div>
                 </div>
                 <div class="delivery-option">
@@ -82,12 +92,15 @@ cart.forEach((cartItem) => {
                     class="delivery-option-input"
                     name="delivery-option-${matchingProduct.id}">
                   <div>
+
                     <div class="delivery-option-date">
                       Wednesday, June 15
                     </div>
+
                     <div class="delivery-option-price">
                       $4.99 - Shipping
                     </div>
+
                   </div>
                 </div>
                 <div class="delivery-option">
@@ -131,6 +144,7 @@ document.querySelector('.js-return-to-home-link')
 }
 UpdateCartQuantity();
 
+
 document.querySelectorAll('.js-update-link')
   .forEach((link) => {
     link.addEventListener('click', () => {
@@ -148,10 +162,42 @@ document.querySelectorAll('.js-save-link')
   .forEach((link) => {
     link.addEventListener('click', () => {
       const { productId } = link.dataset;
+    // Đây là một ví dụ về một tính năng mà chúng ta có thể thêm: xác thực.
+    // Lưu ý: chúng ta cần di chuyển đoạn mã liên quan đến số lượng lên trên
+    // bởi vì nếu số lượng mới không hợp lệ, chúng ta nên
+    // kết thúc sớm và KHÔNG chạy phần còn lại của mã.
+    // Kỹ thuật này được gọi là "kết thúc sớm" (early return).
+
+      /* const container = document.querySelector(
+        `.js-cart-item-container-${productId}`
+      );
+      container.classList.remove('is-editing-quantity'); */
+
+      //lấy giá trị và chuyển đổi giá trị đó từ (string) sang kiểu (number).
+      const quantityInput = document.querySelector(
+        `.js-quantity-input-${productId}`
+      );
+      const newQuantity = Number(quantityInput.value);
+
+      if (newQuantity < 0 || newQuantity >= 1000) {
+        alert('Số lượng phải lớn hơn 0 > hoặc < 1000');
+        return;
+      }
+      //console.log(newQuantity);
+      updateQuantity(productId, newQuantity);
 
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
       );
       container.classList.remove('is-editing-quantity');
+      //hien len html
+      const quantityLabel = document.querySelector(
+        `.js-quantity-label-${productId}`
+      );
+      quantityLabel.innerHTML = newQuantity;
+      //luu so luong
+      updateQuantity(productId, newQuantity);
     });
   });
+  
+  
