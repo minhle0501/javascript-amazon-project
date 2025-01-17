@@ -100,7 +100,7 @@ function UpdateCartQuantity(){
    document.querySelector('.js-cart-quantity')
      .innerHTML = cartQuantity;
 };
-
+UpdateCartQuantity();
 // làm việc với Add to Cart lưu dưới file cart sau đó
 //đặt tên data attribute
 //  data-product-name = "${product.name}
