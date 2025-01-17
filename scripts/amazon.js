@@ -1,10 +1,12 @@
 
+import {cart, addToCart} from '../data/cart.js';
+
+import { products } from '../data/products.js';
+
 //tạo mảng vì mảng đại diện cho danh sách
 //dùng object đẻ đại diện cho mỗi sản phẩm
 //object cho phép ta nhóm lại nhiều giá khác nhau 
-import {cart} from '../data/cart.js';
 
-import { products } from '../data/products.js';
 
 //1.tạo ra biên global
 let productsHTML = '';
@@ -85,6 +87,21 @@ document.querySelector('.js-products-grid')
 // 2 và 5 là các id được trả về khi chúng ta gọi setTimeout).
 const addedMessageTimeouts = {};
 
+
+
+function UpdateCartQuantity(){
+   //cho giá trị của cart hiện tại bằng 0
+   let cartQuantity = 0;
+
+   cart.forEach((CartItem) => {
+     //tính số lượng product thêm vao cart
+     cartQuantity += CartItem.quantity;
+   })
+
+   document.querySelector('.js-cart-quantity')
+     .innerHTML = cartQuantity;
+};
+
 // làm việc với Add to Cart lưu dưới file cart sau đó
 //đặt tên data attribute
 //  data-product-name = "${product.name}
@@ -94,43 +111,12 @@ document.querySelectorAll('.js-add-to-cart')
       //dùng data set để chuyển dữ liệu (chuyển thừ kebab to camel)
       //short cut destructuring
       const { productId } = button.dataset;
-      /*  trong 1 sản phẩm thương mại thì có nhiều sản phẩm có cùng tên với nhau nhưng khác hãng 
-       để giải quyết vấn đề này ta dùng id
-       const productName = button.dataset.productName; */
-      //loop dữ liệu qua cart để không bị trùng sản phẩm mà chỉ thêm quantity
-      //lưu biến item dưới dạng biến để t dùng nó sau này và cho nó underfield
-      let matchingItem;
-      //dùng for each
-      cart.forEach((item) => {
-        //nếu như cart trùng 
-        if (productId === item.productId) {
-          matchingItem = item;
-        }
-      });
+      //ta đặt id productId vào paramenter của function addToCart
+      addToCart(productId);
+      //function UpdateCartQuantity 
+      UpdateCartQuantity();
 
-      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
-      const quantity = Number(quantitySelector.value);
-
-      if (matchingItem) {
-        matchingItem.quantity += quantity;
-      } else {
-        //push dữ liệu vào cart
-        cart.push({
-          productId,
-          quantity,
-        });
-      }
-
-      //cho giá trị của cart hiện tại bằng 0
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        //tính số lượng product thêm vao cart
-        cartQuantity += item.quantity;
-      })
-
-      document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity;
+     
 
       //message added div 
       const addedMessage =
