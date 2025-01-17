@@ -1,7 +1,7 @@
 
 import {cart, addToCart} from '../data/cart.js';
-
-import { products } from '../data/products.js';
+import {products} from '../data/products.js';
+import {formatCurrency} from './utils/money.js';
 
 //tạo mảng vì mảng đại diện cho danh sách
 //dùng object đẻ đại diện cho mỗi sản phẩm
@@ -37,7 +37,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -73,7 +73,7 @@ products.forEach((product) => {
 //kết hơp các html này và put nó lên web
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML;
-
+  
 //Chúng ta sẽ sử dụng một đối tượng để lưu các id thời gian chờ.
 // Lý do chúng ta sử dụng một đối tượng là vì mỗi sản phẩm
 // sẽ có timeoutId riêng. Vì vậy, một đối tượng cho phép chúng ta
@@ -86,7 +86,6 @@ document.querySelector('.js-products-grid')
 // }
 // 2 và 5 là các id được trả về khi chúng ta gọi setTimeout).
 const addedMessageTimeouts = {};
-
 
 
 function UpdateCartQuantity(){
@@ -118,7 +117,7 @@ document.querySelectorAll('.js-add-to-cart')
 
      
 
-      //message added div 
+      //message added div
       const addedMessage =
       document.querySelector(
         `.js-added-to-cart-${productId}`
