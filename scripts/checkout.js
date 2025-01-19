@@ -20,6 +20,7 @@ const today = dayjs();
 const deliveryDate = today.add(7, 'ngày');
 console.log(deliveryDate.format('dddd,DD-MM-YYYY'));
 
+function renderOrderSummary(){
 
 let cartSummaryHTML = ``; 
  
@@ -233,9 +234,12 @@ document.querySelectorAll('.js-delivery-option')
 .forEach((element) => {
   element.addEventListener('click', () => {
 //dùng thuoc tinh data để lấy 2 dữ liêu duoi
-const {productId, deliveryOptionId} = element.dataset;
-updateDeliveryOption(productId, deliveryOptionId);
-});
-})
-  
+  const {productId, deliveryOptionId} = element.dataset;
+  updateDeliveryOption(productId, deliveryOptionId);
+  //đệ quy 
+  renderOrderSummary();
+    });
+  });
+}
+renderOrderSummary();
   
