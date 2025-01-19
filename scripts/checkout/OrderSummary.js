@@ -4,7 +4,7 @@ import { cart,
     updateQuantity,
     updateDeliveryOption } from "../../data/cart.js";
   
-  import { products } from "../../data/products.js";
+  import { products,getProduct } from "../../data/products.js";
   
   import {formatCurrency} from '../utils/money.js';
   
@@ -13,7 +13,7 @@ import { cart,
   //import hàm dayjs với default export (cập nhật thời gian thực)
   import  dayjs  from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
   
-  import { deliveryOptions } from "../../data/deliveryOptions.js";
+  import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
   
   hello();
 
@@ -28,26 +28,18 @@ import { cart,
    
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
+    
+    //dùng hàm get product lay cart giong nhau
+    const matchingProduct = getProduct(productId);
   
-    let matchingProduct;
-  
-    products.forEach((product) => {
-      if (product.id === productId) {
-        matchingProduct = product;
-      }
-    });
-      
     //console.log(matchingProduct);
+
     //delivery date cập nhật ngày
     const deliveryOptionId = cartItem.deliveryOptionId;
-  
-    let deliveryOption;
-    deliveryOptions.forEach((option) => {
-      if(option.id === deliveryOptionId){
-        deliveryOption = option;
-      }
-    });
-  
+
+    //dung hàm get delivery option
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
+    
     //sau khi kiểm tra đúng với cartItem.deliveryOptionId;
     //dùng lại để cập nhật ngày giao hàng của function tùy chọn giao hàng
     const today = dayjs();
