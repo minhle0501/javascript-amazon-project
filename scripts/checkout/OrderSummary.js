@@ -14,13 +14,9 @@ import { cart,
   import  dayjs  from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
   
   import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
-  
-  hello();
 
-  const today = dayjs();
-  //thêm ngày nhận hàng
-  const deliveryDate = today.add(7, 'ngày');
-  console.log(deliveryDate.format('dddd,DD-MM-YYYY'));
+  import { renderPaymentSummary } from "./paymentSummary.js";
+  
   
   export function renderOrderSummary(){
   
@@ -28,7 +24,7 @@ import { cart,
    
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
-    
+
     //dùng hàm get product lay cart giong nhau
     const matchingProduct = getProduct(productId);
   
@@ -152,9 +148,11 @@ import { cart,
     link.addEventListener('click', () => {
       const {productId} = link.dataset;
       removeFromCart(productId);
-      const container = document.querySelector(`.js-cart-item-container-${productId}`
-      ).remove();
+
+      const container = document.querySelector(`.js-cart-item-container-${productId}`).remove();
       UpdateCartQuantity();
+      //khi cập nhật cart đồng thời cập nhât order summary
+      renderPaymentSummary();
     });
   })
   
@@ -232,6 +230,8 @@ import { cart,
     updateDeliveryOption(productId, deliveryOptionId);
     //đệ quy 
     renderOrderSummary();
+    //khi cập nhật cart đồng thời cập nhât order summary
+    renderPaymentSummary();
       });
     });
   }
