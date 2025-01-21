@@ -151,7 +151,7 @@ import { cart,
       const {productId} = link.dataset;
       removeFromCart(productId);
 
-      const container = document.querySelector(`.js-cart-item-container-${productId}`).remove();
+      renderOrderSummary();
       UpdateCartQuantity();
       //khi cập nhật cart đồng thời cập nhât order summary
       renderPaymentSummary();
