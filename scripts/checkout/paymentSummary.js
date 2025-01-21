@@ -24,11 +24,12 @@ export function renderPaymentSummary(){
     const estimatedTax = totalBeforeTax * ( 10 / 100 );
     //tổng chi phí
     const totalCents = totalBeforeTax + estimatedTax;
-
+    //update number in item from order summary 
     let cartQuantity = 0;
     cart.forEach((cartItem) => {
       cartQuantity += cartItem.quantity;
-    })
+    });
+
     const paymentSummaryHTML = `
     <div class="payment-summary-title">
             Order Summary

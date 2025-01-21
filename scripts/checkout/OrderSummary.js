@@ -17,6 +17,7 @@ import { cart,
 
   import { renderPaymentSummary } from "./paymentSummary.js";
   
+  import { renderCheckoutHeader } from "./checkoutHeader.js";
   
   export function renderOrderSummary(){
   
@@ -150,22 +151,23 @@ import { cart,
     link.addEventListener('click', () => {
       const {productId} = link.dataset;
       removeFromCart(productId);
-
+      //dung MVC nen t se dung ham renderCheckoutHeader xoa updateCartQuantity
+      renderCheckoutHeader()
       renderOrderSummary();
-      UpdateCartQuantity();
+      //UpdateCartQuantity();
       //khi cập nhật cart đồng thời cập nhât order summary
       renderPaymentSummary();
     });
   })
   
   //hàm cập nhật số lương
-  function UpdateCartQuantity(){
+/*   function UpdateCartQuantity(){
     const cartQuantity = calculateCartQuantity();
   
   document.querySelector('.js-return-to-home-link')
   .innerHTML = `${cartQuantity} items`;
   }
-  UpdateCartQuantity();
+  UpdateCartQuantity(); */
   
   
   document.querySelectorAll('.js-update-link')
