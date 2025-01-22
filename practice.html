@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="js-heads">heads</button>
+    <button class="js-tails">tails</button>
+    <p class="js-score"></p>
+    <script>
+        let score = JSON.parse(localStorage.getItem('score')) ||  {
+            wins: 0,
+            loses: 0
+        }
+        function playGame(guess){
+            const randomNumber = Math.random();
+            const result = randomNumber < 0.5 ? 'heads': 'tails';
+            alert(guess === result ? 'You win' : 'You loses');
+            if(guess === result){
+            score.wins++;
+        }else{
+            score.loses++;
+        }
+        document.querySelector('.js-score').innerHTML = `wins: ${score.wins} - loses: ${score.loses}`;
+        localStorage.setItem('score', JSON.stringify(score));
+        }
+        document.querySelector('.js-heads').addEventListener('click',() => {
+            playGame('heads');
+        });
+         document.querySelector('.js-tails').addEventListener('click',() => {
+           playGame('tails');
+        });
+        
+      
+    </script>
+</body>
+</html>
