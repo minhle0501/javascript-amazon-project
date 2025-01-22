@@ -51,6 +51,35 @@ class Clothing extends Product {
     return `<a href="${this.sizeChartLink}" target="_blank">Size Chart</a>`;
   }
 }
+//ta sử dung dayjs vì ta có nhiều tính năng so với built in này
+/* const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString()); */
+
+/*
+console.log(this);
+
+const object2 = {
+  a: 2,
+  b: this.a
+};
+*/
+
+/*
+function logThis() {
+  console.log(this);
+}
+logThis();
+logThis.call('hello');
+
+this
+const object3 = {
+  method: () => {
+    console.log(this);
+  }
+};
+object3.method();
+*/
 
 export const products = [
   {
