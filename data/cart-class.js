@@ -3,17 +3,18 @@ import { validDeliveryOption } from './deliveryOptions.js';
 class Cart {
     cartItems;//underfied shortcut
     //ta ko dung dc localStrorgeKey nen ta can dat cho no ten
-    localStorageKey;//underfied shortcut
+    //private property
+    #localStorageKey;//underfied shortcut
 
     constructor(localStorageKey) {
-       this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+       this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
     //loadFromStorage: function() {
     //short cut function inside object
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if (!this.cartItems) {
             this.cartItems = [{
@@ -29,7 +30,7 @@ class Cart {
     }
     //lưu dữ liệu vào card
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(This.cartItem));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(This.cartItem));
     }
 
     addToCart(productId) {
