@@ -1,13 +1,15 @@
 
 import {cart, addToCart, calculateCartQuantity} from '../data/cart.js';
-import {products} from '../data/products.js';
+import {products, loadProducts} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
 //tạo mảng vì mảng đại diện cho danh sách
 //dùng object đẻ đại diện cho mỗi sản phẩm
 //object cho phép ta nhóm lại nhiều giá khác nhau 
 
-
+loadProducts(renderProductsGrid)
+function renderProductsGrid(){
+  
 //1.tạo ra biên global
 let productsHTML = '';
 //dùng forEach để loop qua từng object trên(lưu object dưới parem product chay function)
@@ -138,3 +140,4 @@ document.querySelectorAll('.js-add-to-cart')
       addedMessageTimeouts[productId] = timeoutId;
     });
   });
+}
