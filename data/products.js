@@ -769,6 +769,28 @@ object3.method();
 
 //use backend to load product
 export let products = [];
+
+//fetch
+export function loadProductsFetch(){
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    //tra ve array
+   return response.json();
+  }).then((productsData) => {
+    products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing'){
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+    console.log('loading products');
+  });
+  return promise;
+}
+loadProductsFetch().then(() => {
+  console.log('nextstep');
+});
+
+//XMLHttpResquest
 export function loadProducts(fun){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',() => {
