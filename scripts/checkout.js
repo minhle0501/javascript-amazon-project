@@ -19,12 +19,19 @@ import { loadCart } from "../data/cart.js";
 
 //async await 
 async function loadPage() {
-  await loadProductsFetch();
-  await new Promise((resolve) => {
-    loadCart(() => {
-      resolve();
+  try {
+    //throw 'error1'
+    await loadProductsFetch();
+    const value = await new Promise((resolve, reject) => {
+      loadCart(() => {
+       // reject('error3')
+        resolve('value3');
+      });
     });
-  });
+
+  } catch (error) {
+    alert('Có lỗi xảy ra, vui lòng thử lại');
+  }
   renderCheckoutHeader()
   renderOrderSummary();
   renderPaymentSummary();

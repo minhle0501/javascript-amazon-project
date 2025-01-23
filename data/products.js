@@ -804,6 +804,10 @@ export function loadProducts(fun){
     console.log('loading cart');
     fun();
   });
+  xhr.addEventListener('error', () => {
+    alert('Có lỗi xảy ra, vui lòng thử lại');
+  })
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
