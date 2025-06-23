@@ -1,7 +1,7 @@
 # 🛒 Amazon Cart Clone (study project)
 
 This project simulates the core functionality of an e-commerce checkout/cart system, similar to Amazon. It is built using **vanilla JavaScript**, **HTML**, and **CSS**, organized in modular files for clarity and testability.
-🔗 **Live demo:** [[https://your-project-name.vercel.app](https://your-project-name.vercel.app](https://javascript-amazon-project-ochre.vercel.app/))
+🔗 **Live demo:** [(https://javascript-amazon-project-ochre.vercel.app/))
 ---
 
 ## 📁 Project Structure
