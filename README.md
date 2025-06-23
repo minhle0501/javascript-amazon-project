@@ -1,7 +1,7 @@
 # 🛒 Amazon Cart Clone (study project)
 
 This project simulates the core functionality of an e-commerce checkout/cart system, similar to Amazon. It is built using **vanilla JavaScript**, **HTML**, and **CSS**, organized in modular files for clarity and testability.
-
+🔗 **Live demo:** [[https://your-project-name.vercel.app](https://your-project-name.vercel.app](https://javascript-amazon-project-ochre.vercel.app/))
 ---
 
 ## 📁 Project Structure
@@ -56,7 +56,7 @@ This project simulates the core functionality of an e-commerce checkout/cart sys
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/amazon-cart-clone.git
+git clone https://github.com/minhle0501/amazon-cart-clone.git
 cd amazon-cart-clone
 ```
 
@@ -68,8 +68,6 @@ Open the HTML files directly in your browser:
 * `checkout.html` — checkout process
 * `orders.html` — order history
 * `tests.html` — test runner
-
-No server is required unless you want to simulate a backend with `products.json`.
 
 ---
 
@@ -90,13 +88,7 @@ Tests are organized by folder:
 * ✅ HTML5
 * 🎨 CSS3
 * 🧠 JavaScript (ES6+)
-* 🧪 Manual and script-based testing (no framework)
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](./MIT.LICENSE).
+* 🧪 Manual and script-based testing 
 
 ---
 
